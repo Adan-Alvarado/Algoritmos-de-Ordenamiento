@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bubble Sort - Visualización Interactiva</title>
+  <link rel="stylesheet" href="/CSS/sorts.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="seccion-izquierda">
+      <header class="encabezado">
+        <div id="titulo">Bubble Sort</div>
+        <div id="descripcion">Visualización paso a paso del algoritmo de ordenamiento Bubble Sort.</div>
+      </header>
+      <div id="contenedor-array" aria-label="Representación visual del array"></div>
+      <div id="comentario-animacion-container">
+        <div id="comentario-animacion" aria-live="polite"></div>
+        <div class="botones-animacion">
+          <button id="btn-parar" type="button">Parar</button>
+          <button id="btn-saltar" type="button">Saltar</button>
+        </div>
+      </div>
+      <div id="progreso-animacion" class="progreso">Paso: 0</div>
+    </div>
+    <div class="seccion-derecha">
+      <div class="grupo-entrada">
+        <label for="input-numero">Ingresar número</label>
+        <div class="fila-entrada">
+          <input type="number" id="input-numero" placeholder="Número entero (1-100)" min="1" max="100" />
+          <button id="btn-anadir" type="button">Añadir</button>
+        </div>
+      </div>
+      <div class="grupo-entrada">
+        <label for="input-tamano-lista">Tamaño de lista</label>
+        <div class="fila-entrada">
+          <input type="number" id="input-tamano-lista" placeholder="Cantidad (1-25)" min="1" max="25" />
+          <button id="btn-generar" type="button">Generar</button>
+        </div>
+      </div>
+      <div id="contenedor-lista-actual">
+        <h2>Lista actual:</h2>
+        <div id="lista-actual">[ ]</div>
+      </div>
+      <div class="grupo-botones">
+        <button id="btn-ordenar">Ordenar</button>
+        <button id="btn-reiniciar">Reiniciar</button>
+      </div>
+      <div id="caja-alertas"></div>
+
+
+      <button id="btn-tema" class="btn-tema">Cambiar Tema</button>
+      <a href="/index.html" class="btn-volver">Volver</a>
+
+    </div>
+  </div>
+  <script src="../JS/bubble_sort.js"></script>
+</body>
+</html>

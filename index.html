@@ -1,25 +1,68 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlgorSort</title>
-    <link rel="stylesheet" href="/CSS/Index.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visualización de Algoritmos de Ordenamiento</title>
+  <link rel="stylesheet" href="CSS/index.css" />
 </head>
 <body>
+  <!-- Botón de tema oscuro -->
+  <button id="btn-tema">🌙 Cambiar a Oscuro</button>
+
+  <div class="contenedor-principal">
     <header>
-        <ul class="navBar">
-            <li><a href="#">Bubble Sort</a></li>
-            <li><a href="#">Selection Sort</a></li>
-            <li><a href="#">Insertion Sort</a></li>
-            <li><a href="#">Merge Sort</a></li>
-            <li><a href="#">Counting Sort</a></li>
-            <li><a href="#">Quick Sort</a></li>
-        </ul>
-    </header>    
+      <h1>Algoritmos de Ordenamiento</h1>
+      <div class="subtitulo">Visualización Interactiva con Animación Paso a Paso</div>
+    </header>
 
-    <section class="Ejemplo">
+    <div class="descripcion">
+      Explora cómo funcionan los algoritmos de ordenamiento más importantes de forma visual e interactiva. 
+      Añade números, genera listas aleatorias y observa cómo cada algoritmo ordena paso a paso.
+    </div>
 
-    </section>
+    <div class="lista-algoritmos">
+      <!-- Bubble Sort -->
+      <div class="card">
+        <h3>Bubble Sort</h3>
+        <p>Compara elementos adyacentes y los intercambia si están en orden incorrecto. "Burbujea" el mayor al final.</p>
+        <a href="/PAGES/bubble_sort.html" class="btn-enlace">Ver</a>
+      </div>
+
+      <!-- Insertion Sort -->
+      <div class="card">
+        <h3>Insertion Sort</h3>
+        <p>Ordena como si acomodaras cartas en la mano: inserta cada elemento en su posición correcta.</p>
+        <a href="/PAGES/insertion_sort.html" class="btn-enlace">Ver</a>
+      </div>
+
+      <!-- Selection Sort -->
+      <div class="card">
+        <h3>Selection Sort</h3>
+        <p>En cada paso, selecciona el menor elemento restante y lo coloca en la posición correcta.</p>
+        <a href="/PAGES/selection_sort.html" class="btn-enlace">Ver</a>
+      </div>
+
+      <!-- Quick Sort -->
+      <div class="card">
+        <h3>Quick Sort</h3>
+        <p>Algoritmo rápido basado en pivote: divide, ordena y combina. Muy eficiente en promedio.</p>
+        <a href="/PAGES/quick_sort.html" class="btn-enlace">Ver</a>
+      </div>
+
+      <!-- Merge Sort -->
+      <div class="card">
+        <h3>Merge Sort</h3>
+        <p>Divide el array en mitades, las ordena y luego las fusiona. Tiempo estable O(n log n).</p>
+        <a href="/PAGES/merge_sort.html" class="btn-enlace">Ver</a>
+      </div>
+    </div>
+
+    <footer>
+      Proyecto educativo de algoritmos de ordenamiento • Diseño interactivo y accesible
+    </footer>
+  </div>
+
+  <script src="JS/index.js"></script>
 </body>
 </html>

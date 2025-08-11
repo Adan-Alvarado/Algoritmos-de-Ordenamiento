@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Insertion Sort - Visualización Interactiva</title>
+  <link rel="stylesheet" href="/CSS/sorts.css" />
+</head>
+<body>
+    
+  <div class="container">
+    <!-- Parte izquierda: Visualización -->
+    <div class="seccion-izquierda">
+      <header class="encabezado">
+        <div id="titulo">Insertion Sort</div>
+        <div id="descripcion">
+          Visualización paso a paso del algoritmo de ordenamiento Insertion Sort.
+        </div>
+      </header>
+
+      <!-- Contenedor del array gráfico -->
+      <div id="contenedor-array" aria-label="Representación visual del array"></div>
+
+      <!-- Comentario de animación con ARIA -->
+      <div id="comentario-animacion-container">
+        <div id="comentario-animacion" aria-live="polite"></div>
+        <div class="botones-animacion">
+          <button id="btn-parar" type="button">Parar</button>
+          <button id="btn-saltar" type="button">Saltar</button>
+        </div>
+      </div>
+
+      <!-- Progreso de la animación -->
+      <div id="progreso-animacion" class="progreso">Paso: 0</div>
+    </div>
+
+    <!-- Parte derecha: Controles -->
+    <div class="seccion-derecha">
+      <!-- Añadir número manualmente -->
+      <div class="grupo-entrada">
+        <label for="input-numero">Ingresar número</label>
+        <div class="fila-entrada">
+          <input
+            type="number"
+            id="input-numero"
+            placeholder="Número entero (1-100)"
+            min="1"
+            max="100"
+            aria-label="Ingresar número para añadir a la lista"
+          />
+          <button id="btn-anadir" type="button">Añadir</button>
+        </div>
+      </div>
+
+      <!-- Generar lista aleatoria -->
+      <div class="grupo-entrada">
+        <label for="input-tamano-lista">Tamaño de lista</label>
+        <div class="fila-entrada">
+          <input
+            type="number"
+            id="input-tamano-lista"
+            placeholder="Cantidad (1-25)"
+            min="1"
+            max="25"
+            aria-label="Elegir tamaño de lista aleatoria"
+          />
+          <button id="btn-generar" type="button">Generar</button>
+        </div>
+      </div>
+
+      <!-- Lista actual -->
+      <div id="contenedor-lista-actual">
+        <h2>Lista actual:</h2>
+        <div id="lista-actual" aria-live="polite">[ ]</div>
+      </div>
+
+      <!-- Botones principales -->
+      <div class="grupo-botones">
+        <button id="btn-ordenar" type="button">Ordenar</button>
+        <button id="btn-reiniciar" type="button">Reiniciar</button>
+      </div>
+
+      <!-- Alertas -->
+      <div id="caja-alertas" role="alert" aria-atomic="true"></div>
+
+      <!-- Botón de tema oscuro -->
+      <button id="btn-tema" type="button" class="btn-tema">Cambiar Tema</button>
+      <a href="/index.html" class="btn-volver">Volver</a>
+
+    </div>
+  </div>
+
+  <script src="/JS/insertion_sort.js"></script>
+</body>
+</html>

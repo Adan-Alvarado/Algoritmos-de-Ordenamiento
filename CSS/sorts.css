@@ -1,0 +1,428 @@
+/* Estilo base moderno */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 20px;
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+  transition: background-color 0.3s ease;
+}
+
+body.dark {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+}
+
+/* Contenedor principal con efecto elevado */
+.container {
+  display: flex;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+body.dark .container {
+  background: #2d2d2d;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Parte izquierda */
+.seccion-izquierda {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Encabezado */
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Título con estilo moderno */
+#titulo {
+  background: linear-gradient(135deg, #4a90e2, #5c6bc0);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  min-width: 140px;
+  box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Descripción */
+#descripcion {
+  background-color: #e9f1fb;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  flex: 1;
+  border: 1px solid #d0e0f0;
+}
+
+body.dark #descripcion {
+  background-color: #3a4a5f;
+  border-color: #556b80;
+  color: #e0e0e0;
+}
+
+/* Visualización del arreglo */
+#contenedor-array {
+  background-color: #f0f4f8;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+  align-items: flex-end;
+  min-height: 120px;
+  border: 1px solid #dde5ef;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+body.dark #contenedor-array {
+  background-color: #333;
+  border-color: #444;
+}
+
+#contenedor-array::-webkit-scrollbar {
+  height: 6px;
+}
+
+#contenedor-array::-webkit-scrollbar-thumb {
+  background: #4a90e2;
+  border-radius: 3px;
+}
+
+/* Bloques del arreglo */
+#contenedor-array div {
+  background: linear-gradient(to top, #4a90e2, #6ea8ef);
+  border-radius: 6px 6px 2px 2px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  user-select: none;
+  flex-grow: 1;
+  min-width: 24px;
+  max-width: 40px;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto al resaltar (comparación) */
+#contenedor-array div.resaltado {
+  background: linear-gradient(to top, #e94e77, #f17a9a);
+  transform: scale(1.1) translateY(-5px);
+  z-index: 2;
+  box-shadow: 0 4px 8px rgba(233, 78, 119, 0.3);
+  animation: salto 0.5s ease;
+}
+
+@keyframes salto {
+  0%, 100% { transform: scale(1.1) translateY(0); }
+  50% { transform: scale(1.15) translateY(-8px); }
+}
+
+/* Progreso de animación */
+#progreso-animacion {
+  font-size: 13px;
+  color: #666;
+  padding: 8px;
+  background-color: #f9fafc;
+  border-radius: 4px;
+  text-align: center;
+  border: 1px solid #eee;
+  font-style: italic;
+}
+
+body.dark #progreso-animacion {
+  background-color: #333;
+  border-color: #444;
+  color: #aaa;
+}
+
+/* Comentario de animación */
+#comentario-animacion-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background-color: #f9fafc;
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid #dde5ef;
+  min-height: 50px;
+  font-size: 14px;
+  color: #333;
+}
+
+body.dark #comentario-animacion-container {
+  background-color: #333;
+  border-color: #444;
+  color: #e0e0e0;
+}
+
+#comentario-animacion {
+  flex: 1;
+  font-weight: 500;
+}
+
+/* Botones de animación */
+.botones-animacion button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+}
+
+.botones-animacion button:hover:not(:disabled) {
+  background-color: #3a7bc8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(74, 144, 226, 0.3);
+}
+
+.botones-animacion button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Parte derecha */
+.seccion-derecha {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Grupo de entrada */
+.grupo-entrada {
+  background-color: white;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+body.dark .grupo-entrada {
+  background-color: #2d2d2d;
+  border-color: #444;
+}
+
+.grupo-entrada:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Etiquetas */
+.grupo-entrada label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+  color: #444;
+  font-size: 14px;
+}
+
+body.dark .grupo-entrada label {
+  color: #bbb;
+}
+
+/* Fila de entrada */
+.fila-entrada {
+  display: flex;
+  gap: 8px;
+}
+
+/* Inputs */
+.fila-entrada input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.fila-entrada input:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+body.dark .fila-entrada input {
+  background-color: #333;
+  color: #e0e0e0;
+  border-color: #555;
+}
+
+body.dark .fila-entrada input:focus {
+  border-color: #5a8de6;
+  box-shadow: 0 0 0 3px rgba(90, 141, 230, 0.3);
+}
+
+/* Botones en fila */
+.fila-entrada button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.fila-entrada button:hover:not(:disabled) {
+  background-color: #3a7bc8;
+  transform: translateY(-1px);
+}
+
+/* Contenedor lista actual */
+#contenedor-lista-actual {
+  background-color: #f9fafc;
+  padding: 14px;
+  border-radius: 8px;
+  min-height: 50px;
+  font-size: 14px;
+  border: 1px solid #edf2f7;
+}
+
+body.dark #contenedor-lista-actual {
+  background-color: #333;
+  border-color: #444;
+  color: #e0e0e0;
+}
+
+#contenedor-lista-actual h2 {
+  margin: 0 0 6px 0;
+  font-size: 15px;
+  color: #444;
+}
+
+body.dark #contenedor-lista-actual h2 {
+  color: #bbb;
+}
+
+/* Grupo botones principales */
+.grupo-botones {
+  display: flex;
+  gap: 10px;
+}
+
+.grupo-botones button {
+  flex: 1;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3);
+}
+
+.grupo-botones button:hover:not(:disabled) {
+  background-color: #3a7bc8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+}
+
+.grupo-botones button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.7;
+}
+
+/* Caja de alertas */
+#caja-alertas {
+  background-color: #fff4e5;
+  border: 1px solid #ffcc80;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 14px;
+  min-height: 40px;
+  color: #7a4e00;
+  font-weight: 500;
+  text-align: center;
+}
+
+body.dark #caja-alertas {
+  background-color: #5c4000;
+  border-color: #8c6000;
+  color: #ffddaa;
+}
+
+/* Botón de tema oscuro */
+.btn-tema {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  width: 100%;
+  font-weight: 500;
+}
+
+.btn-tema:hover {
+  background-color: #5a6268;
+  transform: translateY(-1px);
+}
+
+/* Estilo para los enlaces que se ven como botones */
+.btn-volver {
+  display: inline-block;
+  background-color: #4a90e2;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+}
+
+.btn-volver:hover {
+  background-color: #3a7bc8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(74, 144, 226, 0.3);
+}
