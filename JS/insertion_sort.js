@@ -173,7 +173,7 @@ function actualizarBotonTema() {
   }
 }
 
-// === Algoritmo Insertion Sort Animado ===
+// === Algoritmo Insertion Sort Animado (CORREGIDO) ===
 function insertionSortAnimado(array) {
   let i = 1; // Empezamos desde el segundo elemento
   animacionParada = false;
@@ -192,25 +192,36 @@ function insertionSortAnimado(array) {
       const key = array[i];
       let j = i - 1;
 
+      // Mostramos qué estamos insertando
       comentarioAnimacion.textContent = `Insertando ${key} en su posición correcta.`;
-      actualizarVisualizacion([i]); // Resalta el elemento actual (clave)
+      actualizarVisualizacion([i]);
 
-      // Mueve los elementos mayores que la clave una posición adelante
-      while (j >= 0 && array[j] > key) {
-        comentarioAnimacion.textContent = `Comparando ${array[j]} > ${key}, moviendo...`;
-        array[j + 1] = array[j];
-        j--;
-        // Usa un timeout anidado para animar cada paso del desplazamiento
-        return setTimeout(() => {
-          actualizarVisualizacion([j + 1]);
-          setTimeout(siguientePaso, 600);
-        }, 600);
+      // Avanzamos con timeout hasta que j < 0 o array[j] <= key
+      function moverHaciaIzquierda() {
+        if (animacionParada) {
+          comentarioAnimacion.textContent = 'Animación detenida.';
+          actualizarVisualizacion();
+          cambiarEstadoBotones(true);
+          return;
+        }
+
+        if (j >= 0 && array[j] > key) {
+          array[j + 1] = array[j]; // Desplaza hacia la derecha
+          j--;
+          timeoutId = setTimeout(moverHaciaIzquierda, 600);
+        } else {
+          // Aquí colocamos el key en su lugar correcto
+          array[j + 1] = key;
+          i++;
+          timeoutId = setTimeout(siguientePaso, 600);
+        }
       }
 
-      array[j + 1] = key;
-      i++;
-      timeoutId = setTimeout(siguientePaso, 600);
+      // Iniciamos el desplazamiento
+      timeoutId = setTimeout(moverHaciaIzquierda, 600);
+
     } else {
+      // Terminó: actualizamos la lista global
       comentarioAnimacion.textContent = '✅ ¡Lista ordenada correctamente!';
       lista = [...array];
       actualizarVisualizacion();

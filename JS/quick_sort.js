@@ -170,13 +170,13 @@ function actualizarBotonTema() {
   }
 }
 
-// === Algoritmo Quick Sort Animado ===
+// === Algoritmo Quick Sort Animado (Corregido) ===
 function quickSortAnimado(array, low, high) {
   animacionParada = false;
   pasoActual = 0;
   cambiarEstadoBotones(false);
 
-  function sort(low, high) {
+  function sort(l, h) {
     if (animacionParada) {
       comentarioAnimacion.textContent = 'Animación detenida.';
       actualizarVisualizacion();
@@ -184,37 +184,25 @@ function quickSortAnimado(array, low, high) {
       return;
     }
 
-    if (low < high) {
-      comentarioAnimacion.textContent = `Ordenando subarreglo desde índice ${low} hasta ${high}.`;
-      // Mostramos el pivote y los índices
-      timeoutId = setTimeout(() => {
-        particionar(low, high);
-      }, 800);
-    } else {
-      // Caso base: subarreglo de tamaño 0 o 1
-      timeoutId = setTimeout(() => {
-        if (low >= high) {
-          comentarioAnimacion.textContent = `Subarreglo [${low}, ${high}] ya está ordenado.`;
-          timeoutId = setTimeout(() => {
-            // Verificamos si ya terminó todo
-            if (low === 0 && high === lista.length - 1) {
-              comentarioAnimacion.textContent = '✅ ¡Lista ordenada correctamente!';
-              lista = [...array];
-              actualizarVisualizacion();
-              mostrarAlerta('Ordenamiento completado.');
-              cambiarEstadoBotones(true);
-            }
-          }, 600);
-        }
-      }, 600);
+    if (l < h) {
+      comentarioAnimacion.textContent = `Ordenando subarreglo desde índice ${l} hasta ${h}.`;
+      timeoutId = setTimeout(() => particionar(l, h), 600);
+    } else if (l >= 0 && h >= 0 && l >= h) {
+      if (l === 0 && h === array.length - 1) {
+        lista = [...array];
+        comentarioAnimacion.textContent = '✅ ¡Lista ordenada correctamente!';
+        actualizarVisualizacion();
+        mostrarAlerta('Ordenamiento completado.');
+        cambiarEstadoBotones(true);
+      }
     }
   }
 
-  function particionar(low, high) {
-    const pivot = array[high]; // Elegimos el último como pivote
-    let i = low - 1; // Índice del elemento más pequeño
+  function particionar(l, h) {
+    const pivot = array[h];
+    let i = l - 1;
 
-    comentarioAnimacion.textContent = `Pivote elegido: ${pivot} (índice ${high}).`;
+    comentarioAnimacion.textContent = `Pivote: ${pivot} (índice ${h}).`;
 
     function iterarJ(j) {
       if (animacionParada) {
@@ -224,34 +212,32 @@ function quickSortAnimado(array, low, high) {
         return;
       }
 
-      if (j < high) {
+      if (j < h) {
         if (array[j] <= pivot) {
           i++;
           if (i !== j) {
-            comentarioAnimacion.textContent = `Intercambiando ${array[i]} y ${array[j]} (ambos ≤ pivote).`;
             [array[i], array[j]] = [array[j], array[i]];
+            comentarioAnimacion.textContent = `Intercambiando ${array[i]} y ${array[j]}.`;
           }
         }
-        // Resalta el pivote y el elemento actual
-        actualizarVisualizacion([j, high]);
+        actualizarVisualizacion([j, h]);
         timeoutId = setTimeout(() => iterarJ(j + 1), 600);
       } else {
-        // Colocar el pivote en su posición final
         i++;
-        if (i !== high) {
-          comentarioAnimacion.textContent = `Colocando pivote ${pivot} en posición ${i}.`;
-          [array[i], array[high]] = [array[high], array[i]];
+        if (i !== h) {
+          [array[i], array[h]] = [array[h], array[i]];
+          comentarioAnimacion.textContent = `Pivote ${pivot} colocado en posición ${i}.`;
         }
+        lista = [...array];
         actualizarVisualizacion([i]);
         timeoutId = setTimeout(() => {
-          // Ordenar recursivamente las partes
-          sort(low, i - 1);
-          sort(i + 1, high);
+          sort(l, i - 1);
+          sort(i + 1, h);
         }, 800);
       }
     }
 
-    iterarJ(low);
+    iterarJ(l);
   }
 
   sort(low, high);

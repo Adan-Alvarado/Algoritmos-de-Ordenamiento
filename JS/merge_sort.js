@@ -135,7 +135,7 @@ btnOrdenar.addEventListener('click', () => {
     mostrarAlerta('Necesitas al menos 2 números para ordenar.');
     return;
   }
-  mergeSortAnimado([...lista], 0, lista.length - 1);
+  mergeSortColores(lista, 0, lista.length - 1);
 });
 
 btnParar.addEventListener('click', () => {
@@ -170,107 +170,67 @@ function actualizarBotonTema() {
   }
 }
 
-// === Algoritmo Merge Sort Animado ===
-function mergeSortAnimado(array, left, right) {
+// === Algoritmo Merge Sort Sin Animación (con resaltado de trabajo) ===
+function mergeSortColores(array, left, right) {
   animacionParada = false;
   pasoActual = 0;
   cambiarEstadoBotones(false);
 
-  function sort(left, right) {
+  function sort(l, r) {
     if (animacionParada) {
-      comentarioAnimacion.textContent = 'Animación detenida.';
+      comentarioAnimacion.textContent = 'Proceso detenido.';
       actualizarVisualizacion();
       cambiarEstadoBotones(true);
       return;
     }
-
-    if (left >= right) {
-      // Caso base: un solo elemento
-      timeoutId = setTimeout(() => {
-        comentarioAnimacion.textContent = `Subarreglo [${left}] ya está ordenado.`;
-        // Continúa con otros niveles
-      }, 600);
-      return;
-    }
-
-    const mid = Math.floor((left + right) / 2);
-
-    comentarioAnimacion.textContent = `Dividiendo desde ${left} hasta ${right} en [${left},${mid}] y [${mid+1},${right}].`;
-    timeoutId = setTimeout(() => {
-      // Ordenar la mitad izquierda
-      sort(left, mid);
-      timeoutId = setTimeout(() => {
-        // Ordenar la mitad derecha
-        sort(mid + 1, right);
-        timeoutId = setTimeout(() => {
-          // Fusionar ambas mitades
-          if (!animacionParada) {
-            merge(left, mid, right);
-          }
-        }, 600);
-      }, 600);
-    }, 800);
+    if (l >= r) return;
+    const mid = Math.floor((l + r) / 2);
+    sort(l, mid);
+    sort(mid + 1, r);
+    merge(l, mid, r);
   }
 
-  function merge(left, mid, right) {
-    comentarioAnimacion.textContent = `Fusionando [${left},${mid}] y [${mid+1},${right}].`;
-    const leftArr = array.slice(left, mid + 1);
-    const rightArr = array.slice(mid + 1, right + 1);
-    let i = 0, j = 0, k = left;
+  function merge(l, mid, r) {
+    const leftArr = array.slice(l, mid + 1);
+    const rightArr = array.slice(mid + 1, r + 1);
+
+    let i = 0, j = 0, k = l;
     const indicesCambiando = [];
 
-    function fusionar() {
-      if (animacionParada) {
-        comentarioAnimacion.textContent = 'Animación detenida.';
-        actualizarVisualizacion();
-        cambiarEstadoBotones(true);
-        return;
-      }
+    comentarioAnimacion.textContent = `Fusionando índices [${l}...${mid}] con [${mid + 1}...${r}]`;
 
-      if (i < leftArr.length && j < rightArr.length) {
-        if (leftArr[i] <= rightArr[j]) {
-          array[k] = leftArr[i];
-          indicesCambiando.push(k);
-          comentarioAnimacion.textContent = `Colocando ${leftArr[i]} (izquierda) en posición ${k}.`;
-          i++;
-        } else {
-          array[k] = rightArr[j];
-          indicesCambiando.push(k);
-          comentarioAnimacion.textContent = `Colocando ${rightArr[j]} (derecha) en posición ${k}.`;
-          j++;
-        }
-        k++;
-        timeoutId = setTimeout(fusionar, 600);
-      } else if (i < leftArr.length) {
-        array[k] = leftArr[i];
-        indicesCambiando.push(k);
-        comentarioAnimacion.textContent = `Colocando ${leftArr[i]} (resto izquierdo) en posición ${k}.`;
-        i++; k++;
-        timeoutId = setTimeout(fusionar, 600);
-      } else if (j < rightArr.length) {
-        array[k] = rightArr[j];
-        indicesCambiando.push(k);
-        comentarioAnimacion.textContent = `Colocando ${rightArr[j]} (resto derecho) en posición ${k}.`;
-        j++; k++;
-        timeoutId = setTimeout(fusionar, 600);
+    while (i < leftArr.length && j < rightArr.length) {
+      if (leftArr[i] <= rightArr[j]) {
+        array[k] = leftArr[i++];
       } else {
-        // Ya fusionamos
-        actualizarVisualizacion(indicesCambiando);
-        timeoutId = setTimeout(() => {
-          if (left === 0 && right === lista.length - 1) {
-            comentarioAnimacion.textContent = '✅ ¡Lista ordenada correctamente!';
-            lista = [...array];
-            actualizarVisualizacion();
-            mostrarAlerta('Ordenamiento completado.');
-            cambiarEstadoBotones(true);
-          }
-        }, 600);
+        array[k] = rightArr[j++];
       }
+      indicesCambiando.push(k);
+      lista = [...array];
+      actualizarVisualizacion(indicesCambiando);
+      k++;
     }
 
-    actualizarVisualizacion([...Array.from({ length: right - left + 1 }, (_, i) => left + i)]);
-    timeoutId = setTimeout(fusionar, 800);
+    while (i < leftArr.length) {
+      array[k] = leftArr[i++];
+      indicesCambiando.push(k);
+      lista = [...array];
+      actualizarVisualizacion(indicesCambiando);
+      k++;
+    }
+
+    while (j < rightArr.length) {
+      array[k] = rightArr[j++];
+      indicesCambiando.push(k);
+      lista = [...array];
+      actualizarVisualizacion(indicesCambiando);
+      k++;
+    }
   }
 
   sort(left, right);
+  comentarioAnimacion.textContent = '✅ ¡Lista ordenada correctamente!';
+  mostrarAlerta('Ordenamiento completado.');
+  cambiarEstadoBotones(true);
+  actualizarVisualizacion();
 }
